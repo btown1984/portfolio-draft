@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial Slide Designs</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 40px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    
+    .slide-container {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .slide {
+      background-color: #fff;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slide-info {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .slide-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .slide-description {
+      font-size: 16px;
+      color: #666;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+    
+    .slide-number {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 14px;
+      background-color: #f3f3f3;
+      border-radius: 30px;
+    }
+    
+    /* Slide 1: Title Slide */
+    .title-slide {
+      background-color: #111111;
+      color: #ffffff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+    
+    .title-left {
+      padding: 10% 0 0 10%;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .title-subtitle {
+      font-family: 'Georgia', serif;
+      font-size: 1.2vw;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 5%;
+    }
+    
+    .title-main {
+      font-family: 'Georgia', serif;
+      font-size: 5.2vw;
+      line-height: 1.05;
+      font-weight: 600;
+      margin-bottom: 10%;
+      letter-spacing: -0.02em;
+    }
+    
+    .title-author {
+      font-size: 1vw;
+      font-weight: 300;
+      margin-top: 5%;
+    }
+    
+    .title-role {
+      font-size: 0.9vw;
+      opacity: 0.7;
+      margin-top: 0.5%;
+    }
+    
+    .title-right {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .title-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    
+    .title-graphic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(17,17,17,0) 0%, rgba(17,17,17,1) 100%);
+      mix-blend-mode: multiply;
+    }
+    
+    /* Slide 2: Key Statement Slide */
+    .statement-slide {
+      background-color: #ffffff;
+      color: #111111;
+      padding: 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .statement-eyebrow {
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      margin-bottom: 3%;
+    }
+    
+    .statement-quote {
+      font-family: 'Georgia', serif;
+      font-size: 5.5vw;
+      line-height: 1.1;
+      font-weight: 300;
+      width: 90%;
+      margin-bottom: 5%;
+      position: relative;
+    }
+    
+    .statement-quote::before {
+      content: '"';
+      position: absolute;
+      left: -0.5em;
+      top: -0.2em;
+      font-size: 1.5em;
+      color: #FF3366;
+      opacity: 0.8;
+    }
+    
+    .statement-source {
+      font-size: 1vw;
+      font-weight: 500;
+      margin-top: 3%;
+      position: relative;
+      padding-left: 2em;
+    }
+    
+    .statement-source::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 1.5em;
+      height: 2px;
+      background-color: #FF3366;
+    }
+    
+    /* Slide 3: Case Study Slide */
+    .case-slide {
+      background-color: #f8f8f8;
+      display: grid;
+      grid-template-columns: 45% 55%;
+      grid-template-rows: 1fr;
+    }
+    
+    .case-left {
+      background-color: #222;
+      padding: 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .case-number {
+      font-family: 'Georgia', serif;
+      font-size: 15vw;
+      line-height: 0.8;
+      font-weight: 700;
+      color: #FF3366;
+      opacity: 0.8;
+      position: absolute;
+      top: 5%;
+      left: 8%;
+      z-index: 1;
+    }
+    
+    .case-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 5%;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .case-metric {
+      font-size: 5vw;
+      line-height: 1;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 10% 0 5% 0;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .case-label {
+      font-size: 1vw;
+      font-weight: 400;
+      color: #ffffff;
+      opacity: 0.7;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .case-right {
+      background-color: #f8f8f8;
+      padding: 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .case-content-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.5vw;
+      font-weight: 600;
+      margin-bottom: 5%;
+      color: #222;
+    }
+    
+    .case-content {
+      font-size: 1vw;
+      line-height: 1.6;
+      margin-bottom: 5%;
+      color: #444;
+    }
+    
+    .case-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 5%;
+    }
+    
+    .gallery-item {
+      aspect-ratio: 16/9;
+      background-color: #ddd;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Editorial-Style Presentation Slides</h1>
+  
+  <div class="slide-container">
+    <!-- Slide 1: Title Slide -->
+    <div>
+      <div class="slide title-slide">
+        <div class="title-left">
+          <div class="title-subtitle">Presentation</div>
+          <h1 class="title-main">SCALING CREATIVITY</h1>
+          <div class="title-author">Brian Townsend</div>
+          <div class="title-role">AI Creative Leader & Principal Design Manager</div>
+        </div>
+        <div class="title-right">
+          <img class="title-image" src="/api/placeholder/800/450" alt="Abstract creative visual">
+          <div class="title-graphic"></div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Title Slide</h2>
+          <p class="slide-description">Bold asymmetrical layout with oversized serif typography and atmospheric imagery. The high contrast creates immediate visual impact while establishing the presentation's editorial tone.</p>
+        </div>
+        <div class="slide-number">01</div>
+      </div>
+    </div>
+    
+    <!-- Slide 2: Key Statement Slide -->
+    <div>
+      <div class="slide statement-slide">
+        <div class="statement-eyebrow">Philosophical Foundation</div>
+        <div class="statement-quote">Technology inspires the art, art inspires the technology.</div>
+        <div class="statement-source">Guiding principle</div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Key Statement Slide</h2>
+          <p class="slide-description">Dramatic use of white space with exceptionally large serif typography creates a magazine pull-quote effect. The minimalist approach with accent color detail gives the statement commanding presence.</p>
+        </div>
+        <div class="slide-number">02</div>
+      </div>
+    </div>
+    
+    <!-- Slide 3: Case Study Slide -->
+    <div>
+      <div class="slide case-slide">
+        <div class="case-left">
+          <div class="case-number">95</div>
+          <h2 class="case-title">Windows Copilot Film</h2>
+          <div class="case-metric">95%</div>
+          <div class="case-label">Cost Reduction</div>
+        </div>
+        <div class="case-right">
+          <h3 class="case-content-title">AI-Driven Revolution</h3>
+          <p class="case-content">Delivered cinematic-quality in days, not months—95% cost reduction through AI-driven creative workflows and optimized infrastructure.</p>
+          <p class="case-content">The integration of AI technologies with our established creative pipeline allowed for unprecedented speed without sacrificing quality.</p>
+          <div class="case-gallery">
+            <div class="gallery-item">
+              <img class="gallery-image" src="/api/placeholder/400/225" alt="Process image 1">
+            </div>
+            <div class="gallery-item">
+              <img class="gallery-image" src="/api/placeholder/400/225" alt="Process image 2">
+            </div>
+            <div class="gallery-item">
+              <img class="gallery-image" src="/api/placeholder/400/225" alt="Process image 3">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Case Study Slide</h2>
+          <p class="slide-description">Split layout with high-impact statistic treatment and supporting content. The oversized number creates a dramatic focal point while maintaining editorial sophistication and information hierarchy.</p>
+        </div>
+        <div class="slide-number">03</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

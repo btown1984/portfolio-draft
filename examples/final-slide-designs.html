@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Editorial Slide Designs</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 40px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    
+    .slide-container {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .slide {
+      background-color: #fff;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slide-info {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .slide-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .slide-description {
+      font-size: 16px;
+      color: #666;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+    
+    .slide-number {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 14px;
+      background-color: #f3f3f3;
+      border-radius: 30px;
+    }
+    
+    /* Slide 1: Editorial Agenda Slide */
+    .agenda-slide {
+      background-color: #ffffff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .agenda-left {
+      padding: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .agenda-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      margin-bottom: 3%;
+    }
+    
+    .agenda-title {
+      font-family: 'Georgia', serif;
+      font-size: 4vw;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 7%;
+      color: #111111;
+    }
+    
+    .agenda-description {
+      font-size: 1vw;
+      line-height: 1.6;
+      color: #444;
+      max-width: 90%;
+      margin-bottom: 5%;
+    }
+    
+    .agenda-right {
+      background-color: #f8f8f8;
+      padding: 10% 10% 10% 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .agenda-list {
+      list-style-type: none;
+    }
+    
+    .agenda-item {
+      padding-bottom: 7%;
+      margin-bottom: 7%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .agenda-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .agenda-number {
+      flex-shrink: 0;
+      width: 15%;
+      font-family: 'Georgia', serif;
+      font-size: 2.5vw;
+      font-weight: 700;
+      color: #FF3366;
+      opacity: 0.8;
+      line-height: 1;
+    }
+    
+    .agenda-content {
+      flex-grow: 1;
+    }
+    
+    .agenda-item-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.5vw;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 0.6vw;
+    }
+    
+    .agenda-item-description {
+      font-size: 0.9vw;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    /* Slide 2: Stat Cards Slide */
+    .stat-slide {
+      background-color: #111111;
+      padding: 8%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-background {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 50%;
+      height: 120%;
+      background: linear-gradient(135deg, transparent, rgba(255, 51, 102, 0.1));
+      transform: skewX(-15deg);
+      z-index: 1;
+    }
+    
+    .stat-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .stat-header {
+      margin-bottom: 6%;
+    }
+    
+    .stat-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #FF3366;
+      margin-bottom: 2%;
+    }
+    
+    .stat-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 3%;
+      color: #ffffff;
+      max-width: 70%;
+    }
+    
+    .stat-description {
+      font-size: 1vw;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 60%;
+      margin-bottom: 5%;
+    }
+    
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3%;
+      height: 50%;
+    }
+    
+    .stat-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 10%;
+      transition: transform 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    
+    .stat-value {
+      font-family: 'Georgia', serif;
+      font-size: 3.5vw;
+      font-weight: 700;
+      line-height: 1;
+      color: #FF3366;
+      margin-bottom: 1vw;
+    }
+    
+    .stat-label {
+      font-family: 'Georgia', serif;
+      font-size: 1.2vw;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1vw;
+    }
+    
+    .stat-context {
+      font-size: 0.9vw;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: auto;
+    }
+    
+    /* Slide 3: Interactive Demo Slide */
+    .demo-slide {
+      background-color: #ffffff;
+      display: grid;
+      grid-template-columns: 45% 55%;
+    }
+    
+    .demo-left {
+      padding: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .demo-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      margin-bottom: 3%;
+    }
+    
+    .demo-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 5%;
+      color: #111111;
+    }
+    
+    .demo-description {
+      font-size: 1vw;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 8%;
+    }
+    
+    .demo-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5vw;
+    }
+    
+    .demo-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 3%;
+    }
+    
+    .demo-icon {
+      width: 1.5vw;
+      height: 1.5vw;
+      background-color: #FF3366;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.2vw;
+    }
+    
+    .demo-feature-text {
+      font-size: 1vw;
+      line-height: 1.5;
+      color: #444;
+    }
+    
+    .demo-right {
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5%;
+    }
+    
+    .demo-device {
+      width: 100%;
+      height: 100%;
+      background-color: #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .demo-screen {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+    
+    .demo-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 4vw;
+      height: 4vw;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .demo-play {
+      width: 0;
+      height: 0;
+      border-top: 1vw solid transparent;
+      border-bottom: 1vw solid transparent;
+      border-left: 1.5vw solid #FF3366;
+      margin-left: 0.3vw;
+    }
+    
+    /* Slide 4: Thank You / Contact Slide */
+    .thank-you-slide {
+      background-color: #111111;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .thank-you-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      opacity: 0.05;
+    }
+    
+    .thank-you-bg::before {
+      content: '"';
+      font-family: 'Georgia', serif;
+      font-size: 70vw;
+      line-height: 0;
+      color: #FF3366;
+    }
+    
+    .thank-you-content {
+      position: relative;
+      z-index: 2;
+      max-width: 80%;
+    }
+    
+    .thank-you-title {
+      font-family: 'Georgia', serif;
+      font-size: 7vw;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 4%;
+    }
+    
+    .thank-you-subtitle {
+      font-family: 'Georgia', serif;
+      font-size: 2vw;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 6%;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .thank-you-contact {
+      display: flex;
+      justify-content: center;
+      gap: 5%;
+      margin-top: 5%;
+    }
+    
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .contact-icon {
+      width: 3vw;
+      height: 3vw;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: 1vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .contact-icon-inner {
+      width: 1.5vw;
+      height: 1.5vw;
+      background-color: #FF3366;
+      border-radius: 50%;
+    }
+    
+    .contact-label {
+      font-size: 0.9vw;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.3vw;
+    }
+    
+    .contact-value {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>Final Editorial-Style Presentation Slides</h1>
+  
+  <div class="slide-container">
+    <!-- Slide 1: Editorial Agenda Slide -->
+    <div>
+      <div class="slide agenda-slide">
+        <div class="agenda-left">
+          <div class="agenda-eyebrow">Presentation Overview</div>
+          <h2 class="agenda-title">Today's Journey</h2>
+          <p class="agenda-description">We'll explore how infrastructure, culture, and AI technology combine to enable creativity at scale.</p>
+        </div>
+        <div class="agenda-right">
+          <ul class="agenda-list">
+            <li class="agenda-item">
+              <div class="agenda-number">01</div>
+              <div class="agenda-content">
+                <h3 class="agenda-item-title">Launching Surface with Scalable CG Imagery</h3>
+                <p class="agenda-item-description">Building a technical foundation for creative excellence.</p>
+              </div>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-number">02</div>
+              <div class="agenda-content">
+                <h3 class="agenda-item-title">Building Creative Infrastructure & Team Culture</h3>
+                <p class="agenda-item-description">Creating systems that foster innovation and collaboration.</p>
+              </div>
+            </li>
+            <li class="agenda-item">
+              <div class="agenda-number">03</div>
+              <div class="agenda-content">
+                <h3 class="agenda-item-title">Transforming Content Creation through AI</h3>
+                <p class="agenda-item-description">Leveraging artificial intelligence to reimagine creative possibilities.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Editorial Agenda Slide</h2>
+          <p class="slide-description">Split-screen design with editorial treatment of agenda items. The left panel establishes context while the right presents a magazine-style table of contents with sophisticated numbering.</p>
+        </div>
+        <div class="slide-number">08</div>
+      </div>
+    </div>
+    
+    <!-- Slide 2: Stat Cards Slide -->
+    <div>
+      <div class="slide stat-slide">
+        <div class="stat-background"></div>
+        <div class="stat-content">
+          <div class="stat-header">
+            <div class="stat-eyebrow">Performance Metrics</div>
+            <h2 class="stat-title">Quantifiable Impact of Infrastructure Transformation</h2>
+            <p class="stat-description">The optimization of our creative pipeline delivered measurable improvements across all key performance indicators.</p>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-value">95%</div>
+              <div class="stat-label">Cost Reduction</div>
+              <div class="stat-context">Compared to traditional production methods for cinematic quality content.</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">10x</div>
+              <div class="stat-label">Faster Rendering</div>
+              <div class="stat-context">GPU-based infrastructure dramatically accelerated production timelines.</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">50+</div>
+              <div class="stat-label">AI Concepts</div>
+              <div class="stat-context">Generated in under 24 hours for Windows 11 'Bloom' project.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Stat Cards Slide</h2>
+          <p class="slide-description">Dark theme with elegant stat cards displaying key metrics. The cards use sophisticated typography with contextual descriptions, creating an editorial data presentation that highlights achievements.</p>
+        </div>
+        <div class="slide-number">09</div>
+      </div>
+    </div>
+    
+    <!-- Slide 3: Interactive Demo Slide -->
+    <div>
+      <div class="slide demo-slide">
+        <div class="demo-left">
+          <div class="demo-eyebrow">Case Example</div>
+          <h2 class="demo-title">Windows Copilot AI Film</h2>
+          <p class="demo-description">Our AI-driven approach enabled the creation of cinematic-quality content with unprecedented efficiency.</p>
+          <div class="demo-features">
+            <div class="demo-feature">
+              <div class="demo-icon"></div>
+              <div class="demo-feature-text">Delivered in days instead of traditional months-long timeline</div>
+            </div>
+            <div class="demo-feature">
+              <div class="demo-icon"></div>
+              <div class="demo-feature-text">Achieved 95% cost reduction compared to traditional methods</div>
+            </div>
+            <div class="demo-feature">
+              <div class="demo-icon"></div>
+              <div class="demo-feature-text">Enabled rapid iteration based on stakeholder feedback</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-right">
+          <div class="demo-device">
+            <img class="demo-screen" src="/api/placeholder/800/450" alt="Windows Copilot Demo">
+            <div class="demo-overlay">
+              <div class="demo-play"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Interactive Demo Slide</h2>
+          <p class="slide-description">Feature-focused layout with device mockup. The left side presents key benefits in an editorial feature format while the right side offers a visual demonstration that invites interaction.</p>
+        </div>
+        <div class="slide-number">10</div>
+      </div>
+    </div>
+    
+    <!-- Slide 4: Thank You / Contact Slide -->
+    <div>
+      <div class="slide thank-you-slide">
+        <div class="thank-you-bg"></div>
+        <div class="thank-you-content">
+          <h2 class="thank-you-title">Thank You</h2>
+          <p class="thank-you-subtitle">Questions & Collaboration Opportunities</p>
+          <div class="thank-you-contact">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <div class="contact-icon-inner"></div>
+              </div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">brian.townsend@example.com</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <div class="contact-icon-inner"></div>
+              </div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">@briantownsend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Thank You Slide</h2>
+          <p class="slide-description">Dramatic typographic treatment with sophisticated contact information. The oversized quotation mark creates visual interest while maintaining the editorial aesthetic for a memorable conclusion.</p>
+        </div>
+        <div class="slide-number">11</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

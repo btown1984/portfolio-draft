@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Additional Editorial Slide Designs</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 40px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+    
+    .slide-container {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .slide {
+      background-color: #fff;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slide-info {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .slide-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .slide-description {
+      font-size: 16px;
+      color: #666;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+    
+    .slide-number {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 14px;
+      background-color: #f3f3f3;
+      border-radius: 30px;
+    }
+    
+    /* Slide 1: Timeline Slide */
+    .timeline-slide {
+      background-color: #ffffff;
+      padding: 8%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .timeline-header {
+      margin-bottom: 5%;
+    }
+    
+    .timeline-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      margin-bottom: 2%;
+    }
+    
+    .timeline-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 3%;
+      color: #111111;
+    }
+    
+    .timeline-container {
+      display: flex;
+      margin-top: 2%;
+      height: 65%;
+      position: relative;
+    }
+    
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 12%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #FF3366;
+    }
+    
+    .timeline-stages {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5% 0;
+      width: 100%;
+    }
+    
+    .timeline-stage {
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .timeline-year {
+      width: 12%;
+      font-family: 'Georgia', serif;
+      font-size: 1.5vw;
+      font-weight: 700;
+      color: #FF3366;
+      text-align: right;
+      padding-right: 5%;
+      flex-shrink: 0;
+    }
+    
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #FF3366;
+      margin: 0.7vw 5% 0 5%;
+      flex-shrink: 0;
+    }
+    
+    .timeline-content {
+      flex-grow: 1;
+    }
+    
+    .timeline-stage-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.3vw;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 0.5vw;
+    }
+    
+    .timeline-description {
+      font-size: 1vw;
+      color: #444;
+      line-height: 1.5;
+    }
+    
+    /* Slide 2: Data Visualization Slide */
+    .data-slide {
+      background-color: #f8f8f8;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+    
+    .data-left {
+      padding: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .data-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      margin-bottom: 3%;
+    }
+    
+    .data-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 5%;
+      color: #111111;
+    }
+    
+    .data-description {
+      font-size: 1vw;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 8%;
+    }
+    
+    .data-stats {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .data-stat {
+      flex-basis: 45%;
+    }
+    
+    .data-stat-value {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1;
+      font-weight: 700;
+      color: #FF3366;
+      margin-bottom: 1vw;
+    }
+    
+    .data-stat-label {
+      font-size: 0.9vw;
+      font-weight: 500;
+      color: #666;
+    }
+    
+    .data-right {
+      background-color: #ffffff;
+      padding: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .data-chart {
+      width: 100%;
+      height: 80%;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .data-chart-bar {
+      position: absolute;
+      bottom: 0;
+      width: 18%;
+      background-color: #FF3366;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    
+    .data-chart-bar:nth-child(1) {
+      left: 5%;
+      height: 65%;
+    }
+    
+    .data-chart-bar:nth-child(2) {
+      left: 28%;
+      height: 40%;
+    }
+    
+    .data-chart-bar:nth-child(3) {
+      left: 51%;
+      height: 80%;
+    }
+    
+    .data-chart-bar:nth-child(4) {
+      left: 74%;
+      height: 55%;
+    }
+    
+    /* Slide 3: Process Diagram Slide */
+    .process-slide {
+      background-color: #111111;
+      color: #ffffff;
+      padding: 8%;
+      position: relative;
+    }
+    
+    .process-background {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      font-family: 'Georgia', serif;
+      font-size: 20vw;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.03);
+      z-index: 1;
+    }
+    
+    .process-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .process-header {
+      margin-bottom: 6%;
+    }
+    
+    .process-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #FF3366;
+      margin-bottom: 2%;
+    }
+    
+    .process-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 3%;
+      max-width: 70%;
+    }
+    
+    .process-flow {
+      display: flex;
+      justify-content: space-between;
+      height: 70%;
+      margin-top: 2%;
+    }
+    
+    .process-step {
+      flex-basis: 22%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .process-step-number {
+      font-family: 'Georgia', serif;
+      font-size: 5vw;
+      font-weight: 700;
+      line-height: 1;
+      color: #FF3366;
+      opacity: 0.7;
+      margin-bottom: 2vw;
+    }
+    
+    .process-step-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.3vw;
+      font-weight: 600;
+      margin-bottom: 1vw;
+    }
+    
+    .process-step-description {
+      font-size: 0.9vw;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .process-arrow {
+      position: absolute;
+      top: 3vw;
+      right: -13%;
+      width: 10%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .process-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -3px;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Slide 4: Grid Gallery Slide */
+    .gallery-slide {
+      background-color: #ffffff;
+      padding: 8%;
+    }
+    
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5%;
+    }
+    
+    .gallery-title-container {
+      max-width: 60%;
+    }
+    
+    .gallery-eyebrow {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #666;
+      margin-bottom: 1.5%;
+    }
+    
+    .gallery-title {
+      font-family: 'Georgia', serif;
+      font-size: 3vw;
+      line-height: 1.1;
+      font-weight: 600;
+      color: #111111;
+    }
+    
+    .gallery-description {
+      max-width: 30%;
+      font-size: 1vw;
+      line-height: 1.6;
+      color: #444;
+      padding-bottom: 1%;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 2%;
+      height: 70%;
+    }
+    
+    .gallery-item {
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .gallery-item:nth-child(1) {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 2;
+    }
+    
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      font-size: 1vw;
+      color: #ffffff;
+    }
+    
+    .gallery-large .gallery-caption {
+      font-family: 'Georgia', serif;
+      font-size: The slide-1.3vw;
+    }
+  </style>
+</head>
+<body>
+  <h1>Additional Editorial-Style Presentation Slides</h1>
+  
+  <div class="slide-container">
+    <!-- Slide 1: Timeline Slide -->
+    <div>
+      <div class="slide timeline-slide">
+        <div class="timeline-header">
+          <div class="timeline-eyebrow">Creative Evolution</div>
+          <h2 class="timeline-title">The Journey to Scalable Creative Infrastructure</h2>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-stages">
+            <div class="timeline-stage">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-stage-title">Initial Concept</h3>
+                <p class="timeline-description">Development of the foundational infrastructure concept based on creative needs assessment.</p>
+              </div>
+            </div>
+            <div class="timeline-stage">
+              <div class="timeline-year">2019</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-stage-title">GPU Migration</h3>
+                <p class="timeline-description">Transition from traditional CPU-based render farms to GPU acceleration system.</p>
+              </div>
+            </div>
+            <div class="timeline-stage">
+              <div class="timeline-year">2020</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-stage-title">Workflow Automation</h3>
+                <p class="timeline-description">Implementation of Python-based task automation to eliminate repetitive technical work.</p>
+              </div>
+            </div>
+            <div class="timeline-stage">
+              <div class="timeline-year">2021</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-stage-title">AI Integration</h3>
+                <p class="timeline-description">Introduction of AI-driven processes for content generation and rapid prototyping.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Timeline Slide</h2>
+          <p class="slide-description">Vertical timeline with elegant serif typography and accent markers. The chronological structure creates clear narrative progression while maintaining editorial sophistication.</p>
+        </div>
+        <div class="slide-number">04</div>
+      </div>
+    </div>
+    
+    <!-- Slide 2: Data Visualization Slide -->
+    <div>
+      <div class="slide data-slide">
+        <div class="data-left">
+          <div class="data-eyebrow">Performance Metrics</div>
+          <h2 class="data-title">Dramatic Gains Through Infrastructure</h2>
+          <p class="data-description">Our optimization of the creative pipeline delivered measurable improvements across all key performance indicators.</p>
+          <div class="data-stats">
+            <div class="data-stat">
+              <div class="data-stat-value">92%</div>
+              <div class="data-stat-label">Reduction in render time</div>
+            </div>
+            <div class="data-stat">
+              <div class="data-stat-value">75%</div>
+              <div class="data-stat-label">Cost efficiency improvement</div>
+            </div>
+          </div>
+        </div>
+        <div class="data-right">
+          <div class="data-chart">
+            <div class="data-chart-bar"></div>
+            <div class="data-chart-bar"></div>
+            <div class="data-chart-bar"></div>
+            <div class="data-chart-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Data Visualization Slide</h2>
+          <p class="slide-description">Split-layout with contextual data presentation. The left side provides narrative context while the right displays supporting visualization, creating an editorial data story approach.</p>
+        </div>
+        <div class="slide-number">05</div>
+      </div>
+    </div>
+    
+    <!-- Slide 3: Process Diagram Slide -->
+    <div>
+      <div class="slide process-slide">
+        <div class="process-background">03</div>
+        <div class="process-content">
+          <div class="process-header">
+            <div class="process-eyebrow">Creative Methodology</div>
+            <h2 class="process-title">Our Four-Stage Approach to Creative Production</h2>
+          </div>
+          <div class="process-flow">
+            <div class="process-step">
+              <div class="process-step-number">01</div>
+              <h3 class="process-step-title">Analysis</h3>
+              <p class="process-step-description">Comprehensive evaluation of creative needs and technical requirements.</p>
+              <div class="process-arrow"></div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-number">02</div>
+              <h3 class="process-step-title">Design</h3>
+              <p class="process-step-description">Strategic system architecture and workflow planning.</p>
+              <div class="process-arrow"></div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-number">03</div>
+              <h3 class="process-step-title">Implementation</h3>
+              <p class="process-step-description">Execution of technical solutions with iterative refinement.</p>
+              <div class="process-arrow"></div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-number">04</div>
+              <h3 class="process-step-title">Optimization</h3>
+              <p class="process-step-description">Continuous improvement based on performance metrics and creative feedback.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Process Diagram Slide</h2>
+          <p class="slide-description">Dark theme with oversized typographic element creating depth. The four-step process is presented in a magazine-style layout with clear hierarchy and sophisticated typography.</p>
+        </div>
+        <div class="slide-number">06</div>
+      </div>
+    </div>
+    
+    <!-- Slide 4: Grid Gallery Slide -->
+    <div>
+      <div class="slide gallery-slide">
+        <div class="gallery-header">
+          <div class="gallery-title-container">
+            <div class="gallery-eyebrow">Project Showcase</div>
+            <h2 class="gallery-title">Windows 11 'Bloom' Concept Evolution</h2>
+          </div>
+          <div class="gallery-description">
+            Our team generated over 50 AI-driven concept variations in under 24 hours, enabling rapid creative exploration and refinement.
+          </div>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-large">
+            <img class="gallery-image" src="/api/placeholder/800/450" alt="Final Bloom Concept">
+            <div class="gallery-caption">Final selected 'Bloom' concept with particle animation system</div>
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/api/placeholder/400/225" alt="Early Concept 1">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/api/placeholder/400/225" alt="Early Concept 2">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/api/placeholder/400/225" alt="Early Concept 3">
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-image" src="/api/placeholder/400/225" alt="Early Concept 4">
+          </div>
+        </div>
+      </div>
+      <div class="slide-info">
+        <div>
+          <h2 class="slide-title">Grid Gallery Slide</h2>
+          <p class="slide-description">Editorial photo essay layout with asymmetrical grid. The featured image receives prominence while supporting images create context, similar to a magazine feature spread.</p>
+        </div>
+        <div class="slide-number">07</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,799 @@
+Presentation System Architecture Specification
+1. System Overview
+This specification outlines a modular, component-based presentation system built with modern web technologies. The system follows design system principles with centralized design tokens, consistent grid layouts, and a flyout control panel for real-time customization.
+Core Principles
+
+Component-Based Architecture: All UI elements built as reusable components
+Design Token System: Centralized variable system for consistent styling
+Grid-Based Layout: Flexible 12-column grid system optimized for 16:9 ratio
+Separation of Concerns: Content structure, styling, and behavior maintained separately
+Responsive Design: Scales appropriately across display sizes and resolutions
+Interactive Controls: Real-time customization through flyout panel
+Performance Optimization: Smooth transitions and animations
+
+2. Technology Stack
+
+HTML5: Semantic markup structure
+CSS3:
+
+Custom Properties (CSS Variables) for design tokens
+CSS Grid and Flexbox for layouts
+CSS Animations and Transitions
+
+
+JavaScript (ES6+):
+
+Module pattern for organization
+Custom events for component communication
+Intersection Observer for slide transitions
+
+
+Build System:
+
+Turbopack for bundling 
+PostCSS for processing
+Babel for compatibility
+
+
+
+3. Design Token System
+Design tokens are the foundation of the design system, centralizing all visual attributes.
+Primary Token Categories
+cssCopy:root {
+  /* Typography */
+  --font-serif: 'Canela', 'GT Sectra', 'Freight Display', Georgia, serif;
+  --font-sans: 'Söhne', 'Graphik', 'Neue Haas Grotesk', Helvetica, sans-serif;
+  --font-mono: 'Söhne Mono', 'JetBrains Mono', monospace;
+  
+  /* Type Scale (based on 1.618 ratio) */
+  --text-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 1.2vw, 1rem); 
+  --text-base: clamp(1rem, 1.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.8vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 2.5vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 3vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 3.5vw, 3rem);
+  --text-5xl: clamp(3rem, 5vw, 4rem);
+  --text-6xl: clamp(4rem, 6vw, 5rem);
+  --text-7xl: clamp(5rem, 8vw, 6rem);
+  --text-8xl: clamp(6rem, 10vw, 8rem);
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+  
+  /* Colors - Base */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  
+  /* Colors - Neutrals */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  /* Colors - Accent */
+  --color-primary-50: #eff6ff;
+  --color-primary-500: #3b82f6;
+  --color-primary-900: #1e3a8a;
+  
+  --color-secondary-50: #fdf2f8;
+  --color-secondary-500: #ec4899;
+  --color-secondary-900: #831843;
+  
+  /* Spacing (based on 8px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+  --space-48: 12rem;
+  --space-56: 14rem;
+  --space-64: 16rem;
+  
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Z-index scale */
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-auto: auto;
+  
+  /* Grid settings */
+  --grid-columns: 12;
+  --grid-gap: var(--space-4);
+  --slide-padding: var(--space-12);
+  
+  /* Aspect ratio (16:9) */
+  --aspect-ratio: calc(16/9);
+}
+Theme Variants
+Multiple theme options will be available through the control panel:
+cssCopy[data-theme="dark"] {
+  --bg-primary: var(--color-gray-900);
+  --bg-secondary: var(--color-gray-800);
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-gray-300);
+  /* Additional dark theme tokens */
+}
+
+[data-theme="light"] {
+  --bg-primary: var(--color-white);
+  --bg-secondary: var(--color-gray-100);
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-700);
+  /* Additional light theme tokens */
+}
+
+[data-accent="blue"] {
+  --accent-color: var(--color-primary-500);
+  --accent-color-light: var(--color-primary-50);
+  --accent-color-dark: var(--color-primary-900);
+}
+
+[data-accent="pink"] {
+  --accent-color: var(--color-secondary-500);
+  --accent-color-light: var(--color-secondary-50);
+  --accent-color-dark: var(--color-secondary-900);
+}
+4. Grid System
+The presentation uses a 12-column grid system optimized for 16:9 aspect ratio.
+cssCopy.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gap);
+  width: 100%;
+  height: 100%;
+  padding: var(--slide-padding);
+}
+
+/* Column span utility classes */
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-5 { grid-column: span 5; }
+.col-span-6 { grid-column: span 6; }
+.col-span-7 { grid-column: span 7; }
+.col-span-8 { grid-column: span 8; }
+.col-span-9 { grid-column: span 9; }
+.col-span-10 { grid-column: span 10; }
+.col-span-11 { grid-column: span 11; }
+.col-span-12 { grid-column: span 12; }
+
+/* Column start utility classes */
+.col-start-1 { grid-column-start: 1; }
+.col-start-2 { grid-column-start: 2; }
+/* ... and so on through 12 */
+
+/* Row span utility classes */
+.row-span-1 { grid-row: span 1; }
+.row-span-2 { grid-row: span 2; }
+/* ... and so on */
+Asymmetrical Layouts
+Editorial designs often feature asymmetrical layouts for visual interest:
+cssCopy.asymmetrical-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr;
+  grid-template-rows: 1fr 2fr;
+  gap: var(--grid-gap);
+  width: 100%;
+  height: 100%;
+  padding: var(--slide-padding);
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: [full-start] var(--space-8) [main-start] 1fr [breakout-start] repeat(8, 1fr) [breakout-end] 1fr [main-end] var(--space-8) [full-end];
+  grid-template-rows: auto;
+  gap: var(--grid-gap);
+  width: 100%;
+  height: 100%;
+}
+
+.editorial-grid .full-width {
+  grid-column: full-start / full-end;
+}
+
+.editorial-grid .main {
+  grid-column: main-start / main-end;
+}
+
+.editorial-grid .breakout {
+  grid-column: breakout-start / breakout-end;
+}
+5. Component Library
+Core Components
+5.1 Slide Component
+The base slide component with standard features:
+javascriptCopyclass Slide {
+  constructor(element) {
+    this.element = element;
+    this.id = element.id;
+    this.init();
+  }
+  
+  init() {
+    // Initialize slide components
+    this.setupAnimations();
+    this.setupEventListeners();
+  }
+  
+  setupAnimations() {
+    // Register elements with animation attributes
+    const animatedElements = this.element.querySelectorAll('[data-animate]');
+    // Initialize animations based on data attributes
+  }
+  
+  setupEventListeners() {
+    // Setup custom events for slide interactions
+  }
+  
+  enter() {
+    // Triggered when slide becomes active
+    this.element.classList.add('active');
+    // Trigger entrance animations
+  }
+  
+  exit() {
+    // Triggered when slide becomes inactive
+    this.element.classList.remove('active');
+    // Reset animations for next viewing
+  }
+}
+5.2 Typography Components
+cssCopy/* Headline Components */
+.headline {
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-6);
+}
+
+.headline--xxxl {
+  font-size: var(--text-8xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.headline--xxl {
+  font-size: var(--text-7xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.headline--xl {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-semibold);
+}
+
+/* Subheadline */
+.subheadline {
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-4);
+}
+
+/* Body text */
+.body {
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+/* Caption */
+.caption {
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-normal);
+}
+
+/* Editorial quote */
+.pull-quote {
+  font-family: var(--font-serif);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-tight);
+  position: relative;
+  padding-left: var(--space-12);
+}
+
+.pull-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -0.2em;
+  font-size: 1.5em;
+  color: var(--accent-color);
+}
+5.3 Stat Card Component
+htmlCopy<div class="stat-card" data-animate="fade-up">
+  <div class="stat-card__value">95%</div>
+  <div class="stat-card__label">Cost Reduction</div>
+  <div class="stat-card__description">Compared to traditional production methods</div>
+</div>
+cssCopy.stat-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal) var(--transition-easing);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card__value {
+  font-family: var(--font-serif);
+  font-size: var(--text-7xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-none);
+  color: var(--accent-color);
+  margin-bottom: var(--space-2);
+}
+
+.stat-card__label {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.stat-card__description {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+}
+5.4 Timeline Component
+htmlCopy<div class="timeline">
+  <div class="timeline__item" data-animate="fade-in" data-animate-delay="0">
+    <div class="timeline__marker"></div>
+    <div class="timeline__date">2018</div>
+    <div class="timeline__content">
+      <h3 class="timeline__title">Initial Concept</h3>
+      <p class="timeline__description">Development of initial pipeline concept and architecture planning.</p>
+    </div>
+  </div>
+  <!-- Additional timeline items -->
+</div>
+cssCopy.timeline {
+  position: relative;
+  padding-left: var(--space-12);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 2px;
+  background-color: var(--color-gray-300);
+}
+
+.timeline__item {
+  position: relative;
+  margin-bottom: var(--space-16);
+}
+
+.timeline__marker {
+  position: absolute;
+  left: -30px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-color);
+  border: 2px solid var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.timeline__date {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--accent-color);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__content {
+  background-color: var(--bg-secondary);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.timeline__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__description {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+}
+5.5 Image Gallery Component
+htmlCopy<div class="gallery" data-animate="fade-in">
+  <div class="gallery__item" data-animate="slide-up" data-animate-delay="0.1">
+    <img src="image1.jpg" alt="Gallery image 1" class="gallery__image">
+    <div class="gallery__caption">Initial concept sketches</div>
+  </div>
+  <!-- Additional gallery items -->
+</div>
+cssCopy.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal) var(--transition-easing);
+}
+
+.gallery__item:hover {
+  transform: scale(1.02);
+}
+
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal) var(--transition-easing);
+}
+
+.gallery__item:hover .gallery__image {
+  transform: scale(1.05);
+}
+
+.gallery__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-4);
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+5.6 Process Step Component
+htmlCopy<div class="process">
+  <div class="process__step" data-animate="fade-in" data-animate-delay="0.1">
+    <div class="process__number">01</div>
+    <h3 class="process__title">Analysis</h3>
+    <p class="process__description">Analyzing current workflows and identifying bottlenecks.</p>
+  </div>
+  <!-- Additional process steps -->
+</div>
+cssCopy.process {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-8);
+}
+
+.process__step {
+  position: relative;
+  padding: var(--space-8);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal) var(--transition-easing);
+}
+
+.process__step:hover {
+  transform: translateY(-5px);
+}
+
+.process__number {
+  position: absolute;
+  top: -20px;
+  left: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  color: var(--accent-color);
+  opacity: 0.2;
+}
+
+.process__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.process__description {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+}
+5.7 Comparison Component
+htmlCopy<div class="comparison" data-animate="fade-in">
+  <div class="comparison__before">
+    <div class="comparison__label">Before</div>
+    <img src="before.jpg" alt="Before" class="comparison__image">
+    <div class="comparison__data">
+      <div class="comparison__stat">24 hrs</div>
+      <div class="comparison__caption">Render Time</div>
+    </div>
+  </div>
+  <div class="comparison__divider"></div>
+  <div class="comparison__after">
+    <div class="comparison__label">After</div>
+    <img src="after.jpg" alt="After" class="comparison__image">
+    <div class="comparison__data">
+      <div class="comparison__stat">2 hrs</div>
+      <div class="comparison__caption">Render Time</div>
+    </div>
+  </div>
+</div>
+cssCopy.comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.comparison__before,
+.comparison__after {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.comparison__label {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background-color: rgba(0,0,0,0.7);
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  border-radius: var(--radius-full);
+  z-index: 2;
+}
+
+.comparison__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.comparison__divider {
+  width: 2px;
+  height: 80%;
+  background-color: var(--accent-color);
+  position: relative;
+}
+
+.comparison__divider::before,
+.comparison__divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent-color);
+  border-radius: var(--radius-full);
+  transform: translateX(-50%);
+}
+
+.comparison__divider::before {
+  top: 0;
+}
+
+.comparison__divider::after {
+  bottom: 0;
+}
+
+.comparison__data {
+  padding: var(--space-4);
+  background-color: var(--bg-secondary);
+}
+
+.comparison__stat {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+}
+
+.comparison__caption {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+5.8 Media Container Behavior
+Components designed to display images or video (e.g., within galleries, placeholders on slides) should adhere to the following interaction patterns:
+
+Drag and Drop:
+- Containers should act as drop zones, allowing users to drag and drop image or video files directly onto them.
+- Upon successful drop, the dropped media file should be copied to a designated `public/uploads` folder within the project structure.
+- The container should then display the copied media from this location.
+
+Default Media Styling:
+- Images and videos added to containers should default to filling the container's bounds edge-to-edge while maintaining aspect ratio (equivalent to CSS object-fit: cover).
+- Content should be centered within the container if aspect ratios don't match perfectly.
+
+Video Playback Defaults:
+- Videos added to containers should default to autoplaying.
+- Videos should default to looping continuously.
+- Muted audio might be a sensible default for autoplaying videos, potentially configurable.
+
+These defaults ensure visual consistency and immediate feedback, while specific component implementations might offer overrides.
+6. Control Panel Interface
+The control panel is implemented as a flyout panel that allows real-time customization of the presentation.
+htmlCopy<div class="control-panel" id="controlPanel">
+  <button class="control-panel__toggle" id="toggleControlPanel">
+    <span class="control-panel__toggle-icon"></span>
+  </button>
+  
+  <div class="control-panel__content">
+    <h2 class="control-panel__title">Design System Controls</h2>
+    
+    <div class="control-panel__section">
+      <h3 class="control-panel__section-title">Theme</h3>
+      <div class="control-panel__options">
+        <button class="control-panel__option" data-theme="light">Light</button>
+        <button class="control-panel__option" data-theme="dark">Dark</button>
+        <button class="control-panel__option" data-theme="contrast">High Contrast</button>
+      </div>
+    </div>
+    
+    <div class="control-panel__section">
+      <h3 class="control-panel__section-title">Accent Color</h3>
+      <div class="control-panel__options">
+        <button class="control-panel__option" data-accent="blue">Blue</button>
+        <button class="control-panel__option" data-accent="pink">Pink</button>
+        <button class="control-panel__option" data-accent="green">Green</button>
+        <button class="control-panel__option" data-accent="orange">Orange</button>
+      </div>
+    </div>
+    
+    <div class="control-panel__section">
+      <h3 class="control-panel__section-title">Typography</h3>
+      <div class="control-panel__input-group">
+        <label for="headlineFont">Headline Font</label>
+        <select id="headlineFont" class="control-panel__select">
+          <option value="Canela">Canela</option>
+          <option value="GT Sectra">GT Sectra</option>
+          <option value="Freight Display">Freight Display</option>
+        </select>
+      </div>
+      
+      <div class="control-panel__input-group">
+        <label for="bodyFont">Body Font</label>
+        <select id="bodyFont" class="control-panel__select">
+          <option value="Söhne">Söhne</option>
+          <option value="Graphik">Graphik</option>
+          <option value="Neue Haas Grotesk">Neue Haas Grotesk</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="control-panel__section">
+      <h3 class="control-panel__section-title">Grid & Spacing</h3>
+      <div class="control-panel__input-group">
+        <label for="gridGap">Grid Gap</label>
+        <input type="range" id="gridGap" min="0" max="8" step="1" value="4" class="control-panel__range">
+        <output for="gridGap" class="control-panel__output">1rem</output>
+      </div>
+      
+      <div class="control-panel__input-group">
+        <label for="slidePadding">Slide Padding</label>
+        <input type="range" id="slidePadding" min="4" max="16" step="2" value="12" class="control-panel__range">
+        <output for="slidePadding" class="control-panel__output">3rem</output>
+      </div>
+    </div>
+    
+    <div class="control-panel__section">
+      <h3 class="control-panel__section-title">Animation</h3>
+      <div class="control-panel__input-group">
+        <label for="animationSpeed">Animation Speed</label>
+        <select id="animationSpeed" class="control-panel__select">
+          <option value="fast">Fast</option>
+          <option value="normal" selected>Normal</option>
+          <option value="slow">Slow</option>
+        </select>
+      </div>
+      
+      <div class="control-panel__checkbox-group">
+        <input type="checkbox" id="enableAnimations" class="control-panel__checkbox" checked>
+        <label for="enableAnimations">Enable Animations</label>
+      </div>
+    </div>
+    
+    <div class="control-panel__actions">
+      <button class="control-panel__button control-panel__button--primary" id="applyChanges">Apply Changes</button>
+      <button class="control-panel__button" id="resetDefaults">Reset to Defaults</button>
+    </div>
+  </div>
+</div>
