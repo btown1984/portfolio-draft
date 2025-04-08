@@ -20,46 +20,73 @@ const VIDEO_TYPES = [
 ];
 
 /**
- * Save a file and return its persistent path and temporary URL.
- * Stores mapping in localStorage.
- *
- * @param {File} file - The file object to save
- * @returns {Promise<{filePath: string, objectUrl: string}>} - Promise resolving to the file path and its object URL
+ * Uploads a file to the server API endpoint.
+ * @param {File} file - The file object to upload.
+ * @returns {Promise<{filePath: string | null, error: string | null}>} - The persistent file path or an error.
  */
 export const saveFile = async (file) => {
+  if (!file) {
+    return { filePath: null, error: 'No file provided.' };
+  }
+
+  const formData = new FormData();
+  formData.append('media', file);
+
   try {
-    console.log('Saving file:', file.name, file.type);
-    const timestamp = new Date().getTime();
-    const fileName = `${timestamp}-${file.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
-    // This is the persistent identifier we'll use
-    const filePath = `/uploads/${fileName}`;
+    const response = await fetch('/api/upload', {
+      method: 'POST',
+      body: formData,
+    });
 
-    // Create a temporary URL for immediate display
-    const objectUrl = URL.createObjectURL(file);
-    console.log('Created object URL:', objectUrl);
-
-    // Store mapping: filePath -> { name, type, size, objectUrl }
-    try {
-      const savedFiles = JSON.parse(localStorage.getItem('uploadedFiles') || '{}');
-      savedFiles[filePath] = {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        objectUrl: objectUrl, // Store the temporary URL
-        timestamp: timestamp
-      };
-      localStorage.setItem('uploadedFiles', JSON.stringify(savedFiles));
-      console.log('File info saved in localStorage with path:', filePath);
-    } catch (error) {
-      console.error('Error saving to localStorage:', error);
-      // Don't revoke if localStorage fails, maybe still usable in session
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Upload API Error:', errorData);
+      return { filePath: null, error: errorData.error || `Upload failed with status: ${response.status}` };
     }
 
-    // Return both the persistent path and the temporary URL
-    return { filePath, objectUrl };
+    const data = await response.json();
+    console.log('File uploaded successfully, path:', data.filePath);
+    return { filePath: data.filePath, error: null }; // Return the persistent path
+
   } catch (error) {
-    console.error('Error saving file:', error);
-    throw error;
+    console.error('Error uploading file:', error);
+    return { filePath: null, error: 'Failed to upload file.' };
+  }
+};
+
+/**
+ * Retrieves file information stored in localStorage for a given component ID.
+ * NOTE: This is now primarily for retrieving the *persistent* path.
+ * @param {string} componentId - The ID of the component.
+ * @returns {string | null} - The stored file path or null.
+ */
+export const getStoredFileInfo = (componentId) => {
+  try {
+    const storedPath = localStorage.getItem(`media-${componentId}`);
+    console.log(`Retrieved stored path for ${componentId}:`, storedPath);
+    return storedPath;
+  } catch (error) {
+    console.error('Error retrieving from localStorage:', error);
+    return null;
+  }
+};
+
+/**
+ * Stores the persistent file path in localStorage for a given component ID.
+ * @param {string} componentId - The ID of the component.
+ * @param {string} filePath - The persistent file path to store.
+ */
+export const storeFileInfo = (componentId, filePath) => {
+  try {
+    if (filePath) {
+      localStorage.setItem(`media-${componentId}`, filePath);
+      console.log(`Stored path for ${componentId}:`, filePath);
+    } else {
+      localStorage.removeItem(`media-${componentId}`);
+      console.log(`Removed path for ${componentId}`);
+    }
+  } catch (error) {
+    console.error('Error saving to localStorage:', error);
   }
 };
 

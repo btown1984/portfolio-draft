@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import tokens from '../styles/tokens';
-import { saveFile, getFileInfo, getFileUrl, isVideo, isImage } from '../utils/fileUpload';
+import { saveFile, getStoredFileInfo, storeFileInfo, isVideo, isImage } from '../utils/fileUpload';
 
 // Styled components for the content placeholder
 const Placeholder = styled(motion.div)`
   background-color: ${props => props.$backgroundColor || tokens.colors.backgrounds.offWhite};
-  border-radius: ${tokens.borders.radius.default};
+  border-radius: ${props => props.$borderRadius || '0'};
   border: ${props => props.$hasContent ? 'none' : `${tokens.borders.width.thin} dashed ${tokens.colors.neutrals.mediumGray}`};
   padding: ${props => props.$padding || tokens.spacing[5]};
   margin: ${props => props.$margin || '0'};
@@ -134,127 +134,103 @@ const ContentPlaceholder = ({
   $isTitleSlideImage = false,
   ...props
 }) => {
-  const [mediaPath, setMediaPath] = useState(initialMediaPath || null);
-  const [displayUrl, setDisplayUrl] = useState(null);
+  const placeholderRef = useRef(null);
+  const [mediaPath, setMediaPath] = useState(null);
   const [mediaType, setMediaType] = useState(null);
   const [isDraggingOver, setIsDraggingOver] = useState(false);
-  const [dropError, setDropError] = useState(null);
-  const placeholderRef = useRef(null);
-  const videoRef = useRef(null);
-  
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    const path = mediaPath || localStorage.getItem(`media-${id}`);
-    if (path) {
-      console.log(`[${id}] Attempting to load media info for path:`, path);
-      const fileInfo = getFileInfo(path);
-      if (fileInfo) {
-        console.log(`[${id}] Found file info:`, fileInfo);
-        setMediaPath(path);
-        setDisplayUrl(fileInfo.objectUrl);
-        if (isVideo(fileInfo.type)) {
-          setMediaType('video');
-        } else if (isImage(fileInfo.type)) {
-          setMediaType('image');
-        }
-      } else {
-        console.warn(`[${id}] No file info found in localStorage for path:`, path);
-        setMediaPath(null);
-        setDisplayUrl(null);
-        setMediaType(null);
-        localStorage.removeItem(`media-${id}`);
+    const initialPath = initialMediaPath || getStoredFileInfo(id);
+    if (initialPath) {
+      console.log(`[${id}] Loading initial media path:`, initialPath);
+      setMediaPath(initialPath);
+      if (initialPath.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
+        setMediaType('image');
+      } else if (initialPath.match(/\.(mp4|webm|ogg)$/i)) {
+        setMediaType('video');
       }
-    } else {
-        setMediaPath(null);
-        setDisplayUrl(null);
-        setMediaType(null);
     }
   }, [id, initialMediaPath]);
-  
+
   const handleFileUpload = useCallback(async (file) => {
-    setDropError(null);
-    if (!isDropZone) return;
+    setError(null);
+    if (!file) return;
 
-    try {
-      console.log(`[${id}] Handling file upload:`, file.name, file.type);
-      if (isImage(file) || isVideo(file)) {
-        const { filePath, objectUrl } = await saveFile(file);
-        console.log(`[${id}] File saved. Path: ${filePath}, URL: ${objectUrl}`);
-        setMediaPath(filePath);
-        setDisplayUrl(objectUrl);
-        setMediaType(isVideo(file) ? 'video' : 'image');
-        localStorage.setItem(`media-${id}`, filePath);
-        console.log(`[${id}] Saved persistent path ${filePath} to localStorage.`);
-        if (parentOnDrop) {
-          parentOnDrop(id, filePath, file.type);
-        }
-      } else {
-        console.warn(`[${id}] Unsupported file type: ${file.type}`);
-        setDropError('Unsupported file type. Please upload an image or video.');
+    const fileIsImage = isImage(file.type);
+    const fileIsVideo = isVideo(file.type);
+
+    if (!fileIsImage && !fileIsVideo) {
+      setError('Invalid file type. Please upload an image or video.');
+      return;
+    }
+    
+    console.log(`[${id}] Uploading file:`, file.name);
+    const { filePath, error: uploadError } = await saveFile(file);
+
+    if (uploadError || !filePath) {
+      setError(uploadError || 'Failed to upload file.');
+      setMediaPath(null);
+      setMediaType(null);
+      storeFileInfo(id, null);
+    } else {
+      console.log(`[${id}] Upload successful, path:`, filePath);
+      setMediaPath(filePath);
+      setMediaType(fileIsImage ? 'image' : 'video');
+      storeFileInfo(id, filePath);
+      setError(null);
+      
+      if (parentOnDrop) {
+        parentOnDrop(id, filePath, fileIsImage ? 'image' : 'video');
       }
-    } catch (error) {
-      console.error(`[${id}] Error uploading file:`, error);
-      setDropError(`Error uploading file: ${error.message}`);
     }
-  }, [id, isDropZone, parentOnDrop]);
-
-  const handleDragEnter = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!isDropZone) return;
-    console.log(`[${id}] handleDragEnter FIRED`);
-    setIsDraggingOver(true);
-  }, [id, isDropZone]);
-
-  const handleDragOver = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!isDropZone) return;
-    e.dataTransfer.dropEffect = 'copy';
-  }, [isDropZone]);
-
-  const handleDragLeave = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!isDropZone) return;
-    if (placeholderRef.current && !placeholderRef.current.contains(e.relatedTarget)) {
-        console.log(`[${id}] handleDragLeave FIRED`);
-        setIsDraggingOver(false);
-    }
-  }, [id, isDropZone]);
+  }, [id, parentOnDrop]);
 
   const handleDrop = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(`[${id}] handleDrop FIRED on Placeholder`);
-
-    if (!isDropZone) {
-        console.log(`[${id}] Drop zone disabled, ignoring drop.`);
-        return;
-    }
-
     setIsDraggingOver(false);
+    setError(null);
+    console.log(`[${id}] Drop event detected`);
 
+    if (!isDropZone) return;
+    
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       const file = e.dataTransfer.files[0];
-      console.log(`[${id}] File detected in drop:`, file.name);
+      console.log(`[${id}] File dropped:`, file.name);
       handleFileUpload(file);
-    } else {
-      console.log(`[${id}] Drop event without files.`);
-      const sourceId = e.dataTransfer.getData('text/plain');
-      if (parentOnDrop && sourceId && sourceId !== id) {
-          console.log(`[${id}] Handling internal drop from ${sourceId}`);
-          parentOnDrop(sourceId, id);
-      } else if (sourceId) {
-          console.warn(`[${id}] Invalid internal drop from ${sourceId}`);
-          setDropError('Invalid drop operation');
-      } else {
-          console.warn(`[${id}] Drop event with no files or data.`);
-          setDropError('No file detected in drop.');
-      }
+      e.dataTransfer.clearData();
     }
-  }, [id, isDropZone, handleFileUpload, parentOnDrop]);
+  }, [isDropZone, handleFileUpload, id]);
+
+  const handleDragEnter = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isDropZone) {
+      console.log(`[${id}] Drag Enter`);
+      setIsDraggingOver(true);
+    }
+  }, [isDropZone, id]);
+    
+  const handleDragOver = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isDropZone) {
+      e.dataTransfer.dropEffect = 'copy';
+    }
+  }, [isDropZone, id]);
+
+  const handleDragLeave = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isDropZone && placeholderRef.current && !placeholderRef.current.contains(e.relatedTarget)) {
+      console.log(`[${id}] Drag Leave`);
+      setIsDraggingOver(false);
+    }
+  }, [isDropZone, id]);
   
-  const hasContent = !!(children || displayUrl);
+  const hasContent = !!mediaPath;
+
   const styledProps = {
     $isDraggable: isDraggable,
     $isDropZone: isDropZone,
@@ -262,41 +238,19 @@ const ContentPlaceholder = ({
     $hasContent: hasContent,
     $isTitleSlideImage: $isTitleSlideImage,
   };
-  
+
   const renderContent = () => {
-    if (children) return children;
-
-    if (displayUrl) {
-      return (
-        <MediaContainer>
-          {mediaType === 'video' ? (
-            <StyledVideo
-              ref={videoRef}
-              key={displayUrl}
-              src={displayUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              controls={false}
-            />
-          ) : (
-            <StyledImage
-              key={displayUrl}
-              src={displayUrl}
-              alt="Uploaded content" />
-          )}
-        </MediaContainer>
-      );
+    if (mediaPath) {
+      if (mediaType === 'image') {
+        return <StyledImage src={mediaPath} alt="Uploaded content" />;
+      } else if (mediaType === 'video') {
+        return <StyledVideo src={mediaPath} autoPlay muted loop playsInline />;
+      }
+    } else if (children) {
+      return children;
+    } else {
+      return <PlaceholderText>{error ? <ErrorMessage>{error}</ErrorMessage> : placeholderText}</PlaceholderText>;
     }
-
-    return (
-      <>
-        <PlaceholderIcon>+</PlaceholderIcon>
-        <PlaceholderText>{placeholderText}</PlaceholderText>
-        {dropError && <PlaceholderText style={{ color: 'red', marginTop: tokens.spacing[2] }}>{dropError}</PlaceholderText>}
-      </>
-    );
   };
   
   return (
@@ -309,11 +263,6 @@ const ContentPlaceholder = ({
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      animate={{
-        borderColor: isDraggingOver ? tokens.colors.accent.primary : (hasContent ? 'transparent' : tokens.colors.neutrals.mediumGray),
-        backgroundColor: isDraggingOver ? 'rgba(255, 51, 102, 0.05)' : (styledProps.$backgroundColor || tokens.colors.backgrounds.offWhite),
-      }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
       {...props}
     >
       <ContentWrapper>

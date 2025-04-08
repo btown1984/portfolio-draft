@@ -117,6 +117,8 @@ export const StatsContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 3%;
 `;
 
 export const StatsHeader = styled.div`

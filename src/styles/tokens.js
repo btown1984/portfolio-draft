@@ -25,7 +25,7 @@ export const tokens = {
     // Background treatments
     backgrounds: {
       light: '#FFFFFF',
-      offWhite: '#F5F1E8',  // Much warmer beige/cream color
+      offWhite: '#EAE6DD',  // Much warmer beige/cream color (darkened from #F5F1E8)
       dark: '#111111',
     },
     // Gradient backgrounds
@@ -181,16 +181,16 @@ export const tokens = {
         itemTitleBottom: '0.6vw',
       },
       statsSlide: {
-        padding: '8%',
-        eyebrowBottom: '2%',
-        titleBottom: '2%',
-        subtitleTop: '2%',
-        headerBottom: '6%',
-        cardPadding: '8%',
+        padding: '8% 8% 12% 8%',
+        eyebrowBottom: '1.5%',
+        titleBottom: '1.5%',
+        subtitleTop: '1.5%',
+        headerBottom: '2%',
+        cardPadding: '7%',
         cardGap: '3%',
-        gridMarginTop: '5%',
+        gridMarginTop: '1.5%',
         statValueBottom: '1vw',
-        statLabelBottom: '1vw',
+        statLabelBottom: '0.8vw',
       }
     }
   },

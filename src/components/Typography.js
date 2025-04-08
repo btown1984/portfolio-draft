@@ -123,6 +123,7 @@ export const StatValue = styled.div`
   line-height: ${tokens.typography.lineHeight.editorial.statValue};
   color: ${props => props.$color || tokens.colors.accent.primary};
   margin-bottom: ${props => props.$marginBottom || tokens.spacing.editorial.statsSlide.statValueBottom};
+  line-height: 0.85;
 `;
 
 export const StatLabel = styled.div`

@@ -6,9 +6,30 @@ import { toggleFullscreen } from '../utils/fullscreen';
 import tokens from '../styles/tokens';
 
 // Import slides
-import Slide1 from '../slides/Slide1';
-import Slide2 from '../slides/Slide2';
-import Slide3 from '../slides/Slide3';
+import Title from '../slides/Title';
+import Agenda from '../slides/Agenda';
+import About1 from '../slides/About1';
+import CaseStudy1 from '../slides/CaseStudy1';
+import CaseStudy1Challenge from '../slides/CaseStudy1Challenge';
+import CaseStudy1Complexities from '../slides/CaseStudy1Complexities';
+import CaseStudy1Collaboration from '../slides/CaseStudy1Collaboration';
+import CaseStudy1Process from '../slides/CaseStudy1Process';
+import CaseStudy1Scaling from '../slides/CaseStudy1Scaling';
+import CaseStudy1Automation from '../slides/CaseStudy1Automation';
+import CaseStudy1Evolution from '../slides/CaseStudy1Evolution';
+import CaseStudy1Impact from '../slides/CaseStudy1Impact';
+import CaseStudy1Summary from '../slides/CaseStudy1Summary';
+import CaseStudy2 from '../slides/CaseStudy2';
+import CaseStudy2Spark from '../slides/CaseStudy2Spark';
+import CaseStudy2Demand from '../slides/CaseStudy2Demand';
+import CaseStudy2Team from '../slides/CaseStudy2Team';
+import CaseStudy2Infrastructure from '../slides/CaseStudy2Infrastructure';
+import CaseStudy2Speed from '../slides/CaseStudy2Speed';
+import CaseStudy2Hybrid from '../slides/CaseStudy2Hybrid';
+import CaseStudy2Launch from '../slides/CaseStudy2Launch';
+import CaseStudy2Process from '../slides/CaseStudy2Process';
+import CaseStudy2Reflections from '../slides/CaseStudy2Reflections';
+import CaseStudy3 from '../slides/CaseStudy3';
 
 // Styled components
 const PresentationContainer = styled.div`
@@ -89,15 +110,15 @@ const slideVariants = {
     x: 0,
     opacity: 1,
     transition: {
-      x: { type: 'tween', duration: 0.85, ease: [0.16, 1, 0.05, 1] },
-      opacity: { duration: 0.7, ease: 'easeOut' }
+      x: { type: 'tween', duration: 0.6, ease: [0.16, 1, 0.05, 1] },
+      opacity: { duration: 0.6, ease: 'easeOut' }
     }
   },
   exit: (direction) => ({
     x: direction < 0 ? '100%' : '-100%',
     opacity: 0,
     transition: {
-      x: { type: 'tween', duration: 0.85, ease: [0.16, 1, 0.05, 1] },
+      x: { type: 'tween', duration: 0.6, ease: [0.16, 1, 0.05, 1] },
       opacity: { duration: 0.6, ease: 'easeOut' }
     }
   })
@@ -119,9 +140,30 @@ const PresentationController = () => {
   
   // Array of slide components
   const slides = [
-    Slide1,
-    Slide2,
-    Slide3
+    Title,
+    Agenda,
+    About1,
+    CaseStudy1,
+    CaseStudy1Challenge,
+    CaseStudy1Complexities,
+    CaseStudy1Collaboration,
+    CaseStudy1Process,
+    CaseStudy1Scaling,
+    CaseStudy1Automation,
+    CaseStudy1Evolution,
+    CaseStudy1Impact,
+    CaseStudy1Summary,
+    CaseStudy2,
+    CaseStudy2Spark,
+    CaseStudy2Demand,
+    CaseStudy2Team,
+    CaseStudy2Infrastructure,
+    CaseStudy2Speed,
+    CaseStudy2Hybrid,
+    CaseStudy2Launch,
+    CaseStudy2Process,
+    CaseStudy2Reflections,
+    CaseStudy3
   ];
   
   // Handle navigation to next slide
@@ -171,15 +213,14 @@ const PresentationController = () => {
 
   return (
     <PresentationContainer>
-      <AnimatePresence custom={direction} initial={false}>
+      <AnimatePresence custom={direction} initial={false} mode="sync">
         <SlideWrapper
-          key={currentSlide}
+          key={`slide-${currentSlide}`}
           custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ type: 'tween', duration: 0.85, ease: [0.16, 1, 0.05, 1] }}
         >
           <CurrentSlide 
             onNavigate={navigateToSlide} 
