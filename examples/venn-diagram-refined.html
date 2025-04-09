@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refined Venn Diagram - Neutral Palette</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+      padding: 40px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+    
+    .slide-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .slide {
+      background-color: #111111;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5%;
+    }
+    
+    .slide-info {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .slide-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .slide-description {
+      font-size: 16px;
+      color: #666;
+      max-width: 80%;
+      line-height: 1.5;
+    }
+    
+    /* Title section styles */
+    .title-section {
+      text-align: center;
+      max-width: 70%;
+      margin-bottom: 5%;
+    }
+    
+    .subtitle {
+      font-family: 'Georgia', serif;
+      font-size: 1vw;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #FF3366;
+      margin-bottom: 1vw;
+    }
+    
+    .main-title {
+      font-family: 'Georgia', serif;
+      font-size: 3.5vw;
+      line-height: 1.1;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 2%;
+    }
+    
+    .description {
+      font-size: 1.2vw;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    
+    /* Venn diagram styles */
+    .venn-container {
+      position: relative;
+      width: 65%;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2%;
+    }
+    
+    .circle {
+      position: absolute;
+      width: 40%;
+      height: 75%;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2%;
+      color: #FFFFFF;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+    }
+    
+    .circle:hover {
+      opacity: 0.9;
+    }
+    
+    .design-circle {
+      left: 10%;
+    }
+    
+    .marketing-circle {
+      right: 10%;
+    }
+    
+    .executive-circle {
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .accent-line {
+      width: 2.5vw;
+      height: 2px;
+      background-color: #FF3366;
+      margin-bottom: 1vw;
+    }
+    
+    .stakeholder-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.4vw;
+      font-weight: 600;
+      margin-bottom: 1vw;
+      text-align: center;
+    }
+    
+    .stakeholder-desc {
+      font-size: 1vw;
+      line-height: 1.4;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .intersection {
+      position: absolute;
+      width: 15%;
+      height: 15%;
+      z-index: 1;
+      opacity: 0.3;
+      border-radius: 40%;
+      background-color: rgba(255, 51, 102, 0.3);
+      mix-blend-mode: overlay;
+    }
+  </style>
+</head>
+<body>
+  <h1>Refined Venn Diagram - Neutral Palette</h1>
+  
+  <div class="slide-container">
+    <div class="slide">
+      <div class="title-section">
+        <div class="subtitle">Microsoft Surface Product Launches</div>
+        <h2 class="main-title">Creating Space for Creative Excellence</h2>
+        <p class="description">
+          Supporting internal teams to create compelling product stories without technical friction
+        </p>
+      </div>
+      
+      <div class="venn-container">
+        <div class="circle design-circle">
+          <div class="accent-line"></div>
+          <h3 class="stakeholder-title">Design Teams</h3>
+          <p class="stakeholder-desc">Technical support to visualize concepts quickly and accurately</p>
+        </div>
+        
+        <div class="circle marketing-circle">
+          <div class="accent-line"></div>
+          <h3 class="stakeholder-title">Marketing Leaders</h3>
+          <p class="stakeholder-desc">High-quality visuals that communicate product value</p>
+        </div>
+        
+        <div class="circle executive-circle">
+          <div class="accent-line"></div>
+          <h3 class="stakeholder-title">Executive Stakeholders</h3>
+          <p class="stakeholder-desc">Flawless visuals under extreme deadline pressure</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slide-info">
+      <div>
+        <h2 class="slide-title">Refined Venn Diagram - Neutral Palette</h2>
+        <p class="slide-description">Elegant Venn diagram with a neutral monochromatic palette and the pink accent color used only for subtle accents. The overlapping areas create negative space at the center where "you" exist implicitly rather than explicitly.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

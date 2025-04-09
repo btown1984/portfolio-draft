@@ -32,7 +32,16 @@ const TitleArea = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 2;
-  padding: ${tokens.layout.padding.titleSlide};
+  padding: 0 10%;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const TitleContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const ImageArea = styled.div`
@@ -116,11 +125,13 @@ const Title = ({ onContentDrop }) => {
     <SlideContainer>
       <SlideBackground />
       <TitleArea>
-        <EditorialSubtitle ref={subtitleRef}>PORTFOLIO REVIEW</EditorialSubtitle>
-        <EditorialTitle ref={titleRef}>BRIAN TOWNSEND</EditorialTitle>
-        <AuthorInfo ref={authorRef}>
-          <AuthorRole>AI Creative Leader | Product Storyteller | CG Artist | Principal Design Manager</AuthorRole>
-        </AuthorInfo>
+        <TitleContent>
+          <EditorialSubtitle ref={subtitleRef}>PORTFOLIO REVIEW</EditorialSubtitle>
+          <EditorialTitle ref={titleRef}>BRIAN TOWNSEND</EditorialTitle>
+          <AuthorInfo ref={authorRef}>
+            <AuthorRole>AI Creative Leader | Product Storyteller | CG Artist | Principal Design Manager</AuthorRole>
+          </AuthorInfo>
+        </TitleContent>
       </TitleArea>
       
       <ImageArea>

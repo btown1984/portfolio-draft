@@ -160,9 +160,6 @@ const CaseStudy1 = ({ onContentDrop }) => {
       <ContentArea>
         <ProjectLabel>Case Study 1</ProjectLabel>
         <ProjectTitle>Microsoft Surface <br /> Product Launches</ProjectTitle>
-        <ProjectDescriptor>
-        This case study explores how I established the story-telling foundation for Microsoft's Surface product launches, setting<br /> up scalable systems.
-        </ProjectDescriptor>
         
         <ProjectDetails>
           <ProjectDetailItem>

@@ -95,6 +95,16 @@ const MediaContainer = styled.div`
   pointer-events: none;
 `;
 
+const MediaWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: ${props => `translate(${props.$translateX || 0}px, ${props.$translateY || 0}px)`};
+  transition: transform 0.1s linear;
+`;
+
 const StyledImage = styled.img`
   width: 100%;
   height: 100%;
@@ -122,6 +132,7 @@ const StyledVideo = styled.video`
  * @param {Object} props.style - Additional styling
  * @param {String} props.savedMediaPath - Path to a previously saved media file
  * @param {Boolean} props.$isTitleSlideImage - Whether the placeholder is a title slide image
+ * @param {Object} props.imagePosition - Image position for StyledImage and StyledVideo
  */
 const ContentPlaceholder = ({
   id,
@@ -132,6 +143,7 @@ const ContentPlaceholder = ({
   onDrop: parentOnDrop,
   savedMediaPath: initialMediaPath,
   $isTitleSlideImage = false,
+  imagePosition,
   ...props
 }) => {
   const placeholderRef = useRef(null);
@@ -241,11 +253,30 @@ const ContentPlaceholder = ({
 
   const renderContent = () => {
     if (mediaPath) {
-      if (mediaType === 'image') {
-        return <StyledImage src={mediaPath} alt="Uploaded content" />;
-      } else if (mediaType === 'video') {
-        return <StyledVideo src={mediaPath} autoPlay muted loop playsInline />;
-      }
+      const mediaElement = mediaType === 'image' ? (
+        <StyledImage 
+          src={mediaPath} 
+          alt="Uploaded content" 
+        />
+      ) : mediaType === 'video' ? (
+        <StyledVideo 
+          src={mediaPath} 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+        />
+      ) : null;
+
+      return (
+        <MediaWrapper
+          $translateX={imagePosition?.x}
+          $translateY={imagePosition?.y}
+        >
+          {mediaElement}
+        </MediaWrapper>
+      );
+
     } else if (children) {
       return children;
     } else {

@@ -160,9 +160,6 @@ const CaseStudy3 = ({ onContentDrop }) => {
       <ContentArea>
         <ProjectLabel>Case Study 3</ProjectLabel>
         <ProjectTitle>Transforming Visual Design<br />Storytelling With AI</ProjectTitle>
-        <ProjectDescriptor>
-          Leveraging the latest AI tools to produce more with less for Windows and Devices.
-        </ProjectDescriptor>
         
         <ProjectDetails>
           <ProjectDetailItem>

@@ -19,12 +19,16 @@ const useKeyboardNavigation = (goToNextSlide, goToPrevSlide, toggleFullscreen) =
       case 'Backspace':
         goToPrevSlide();
         break;
-      case 'f':
       case 'F':
-        toggleFullscreen();
+      case 'f':
+        // Only toggle fullscreen if Shift key is also pressed
+        if (e.shiftKey) {
+          e.preventDefault(); // Prevent browser's find dialog
+          toggleFullscreen();
+        }
         break;
       case 'Escape':
-        // If in fullscreen, exit fullscreen
+        // Exit fullscreen mode
         if (document.fullscreenElement) {
           document.exitFullscreen().catch((err) => {
             console.error(`Error exiting fullscreen: ${err.message}`);

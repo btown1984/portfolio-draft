@@ -160,9 +160,6 @@ const CaseStudy2 = ({ onContentDrop }) => {
       <ContentArea>
         <ProjectLabel>Case Study 2</ProjectLabel>
         <ProjectTitle>Building a CG + Live Action <br /> Design Team</ProjectTitle>
-        <ProjectDescriptor>
-          Pushing design team storytelling to the next level.
-        </ProjectDescriptor>
         
         <ProjectDetails>
           <ProjectDetailItem>

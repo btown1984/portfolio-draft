@@ -51,75 +51,23 @@ const SlideWrapper = styled(motion.div)`
   align-items: center;
 `;
 
-const NavigationDots = styled.div`
-  position: fixed;
-  bottom: ${tokens.spacing[4]};
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: ${tokens.spacing[2]};
-  z-index: 100;
-`;
-
-const NavDot = styled.button`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: ${props => props.$active ? tokens.colors.accent.primary : tokens.colors.neutrals.mediumGray};
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  opacity: ${props => props.$active ? 1 : 0.5};
-  transition: all ${tokens.animation.duration.fast} ${tokens.animation.easing.easeInOut};
-  
-  &:hover {
-    opacity: 1;
-  }
-`;
-
-const FullscreenButton = styled.button`
-  position: fixed;
-  bottom: ${tokens.spacing[4]};
-  right: ${tokens.spacing[4]};
-  width: 40px;
-  height: 40px;
-  border-radius: ${tokens.borders.radius.md};
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: ${tokens.colors.neutrals.white};
-  font-size: ${tokens.typography.fontSize.lg};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 100;
-  transition: all ${tokens.animation.duration.fast} ${tokens.animation.easing.easeInOut};
-  
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-`;
-
-// Slide transition variants
+// Slide transition variants - simplified to quick fades with no horizontal movement
 const slideVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? '100%' : '-100%',
+  enter: () => ({
     opacity: 0,
   }),
   center: {
-    x: 0,
     opacity: 1,
     transition: {
-      x: { type: 'tween', duration: 0.6, ease: [0.16, 1, 0.05, 1] },
-      opacity: { duration: 0.6, ease: 'easeOut' }
+      duration: 0.3, // Much faster transition
+      ease: 'easeOut'
     }
   },
-  exit: (direction) => ({
-    x: direction < 0 ? '100%' : '-100%',
+  exit: () => ({
     opacity: 0,
     transition: {
-      x: { type: 'tween', duration: 0.6, ease: [0.16, 1, 0.05, 1] },
-      opacity: { duration: 0.6, ease: 'easeOut' }
+      duration: 0.2, // Even faster exit
+      ease: 'easeIn'
     }
   })
 };
@@ -127,6 +75,9 @@ const slideVariants = {
 /**
  * The main presentation controller component
  * Handles slide navigation and content management
+ * 
+ * Note: Fullscreen mode is toggled with Shift+F keyboard shortcut
+ * ESC key exits fullscreen mode
  */
 const PresentationController = () => {
   // State for the current slide index
@@ -137,6 +88,8 @@ const PresentationController = () => {
   const [contentState, setContentState] = useState({});
   // State for fullscreen mode
   const [isFullscreen, setIsFullscreen] = useState(false);
+  // NEW: Animation coordination state - indicates when slide transition is complete
+  const [slideAnimationState, setSlideAnimationState] = useState('idle');
   
   // Array of slide components
   const slides = [
@@ -168,19 +121,21 @@ const PresentationController = () => {
   
   // Handle navigation to next slide
   const goToNextSlide = useCallback(() => {
-    if (currentSlide < slides.length - 1) {
+    if (currentSlide < slides.length - 1 && slideAnimationState === 'idle') {
+      setSlideAnimationState('transitioning');
       setDirection(1);
       setCurrentSlide(prevSlide => prevSlide + 1);
     }
-  }, [currentSlide, slides.length]);
+  }, [currentSlide, slides.length, slideAnimationState]);
   
   // Handle navigation to previous slide
   const goToPrevSlide = useCallback(() => {
-    if (currentSlide > 0) {
+    if (currentSlide > 0 && slideAnimationState === 'idle') {
+      setSlideAnimationState('transitioning');
       setDirection(-1);
       setCurrentSlide(prevSlide => prevSlide - 1);
     }
-  }, [currentSlide]);
+  }, [currentSlide, slideAnimationState]);
   
   // Handle fullscreen toggle
   const handleToggleFullscreen = useCallback(async () => {
@@ -193,8 +148,11 @@ const PresentationController = () => {
   
   // Handle navigation to specific slide
   const navigateToSlide = (index) => {
-    setDirection(index > currentSlide ? 1 : -1);
-    setCurrentSlide(index);
+    if (slideAnimationState === 'idle') {
+      setSlideAnimationState('transitioning');
+      setDirection(index > currentSlide ? 1 : -1);
+      setCurrentSlide(index);
+    }
   };
   
   // Handle content drop for drag and drop functionality
@@ -206,6 +164,15 @@ const PresentationController = () => {
       ...prevState,
       [targetId]: `Content from ${sourceId}`
     }));
+  };
+  
+  // Handle animation complete - no artificial delay
+  const handleAnimationComplete = (definition) => {
+    if (definition === 'center') {
+      // Slide has reached center position - transition complete
+      // Set to idle immediately with no delay
+      setSlideAnimationState('idle');
+    }
   };
   
   // Get the current slide component
@@ -221,30 +188,16 @@ const PresentationController = () => {
           initial="enter"
           animate="center"
           exit="exit"
+          onAnimationComplete={handleAnimationComplete}
         >
           <CurrentSlide 
             onNavigate={navigateToSlide} 
             onContentDrop={handleContentDrop}
             contentState={contentState}
+            animationState={slideAnimationState} // Pass animation state to slides
           />
         </SlideWrapper>
       </AnimatePresence>
-      
-      {/* Navigation dots */}
-      <NavigationDots>
-        {slides.map((_, index) => (
-          <NavDot 
-            key={index} 
-            $active={index === currentSlide} 
-            onClick={() => navigateToSlide(index)}
-          />
-        ))}
-      </NavigationDots>
-      
-      {/* Fullscreen button */}
-      <FullscreenButton onClick={handleToggleFullscreen}>
-        {isFullscreen ? '⤓' : '⤢'}
-      </FullscreenButton>
     </PresentationContainer>
   );
 };

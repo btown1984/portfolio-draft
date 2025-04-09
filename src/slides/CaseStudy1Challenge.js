@@ -1,151 +1,173 @@
 import React from 'react';
 import styled from 'styled-components';
 import tokens from '../styles/tokens';
-import { EditorialSubtitle } from '../components/Typography';
 
-// Styled components for the Challenge slide
+// Styled components for the Light Background with Numbered Stack slide
 const SlideContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  color: ${tokens.colors.neutrals.white};
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 60%;
 `;
 
-const ChallengeLeft = styled.div`
-  background-color: ${tokens.colors.backgrounds.dark};
+const LeftPanel = styled.div`
+  background-color: ${tokens.colors.backgrounds.light};
   padding: 8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 `;
 
-const ChallengeTitle = styled.h2`
+const BackgroundText = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
   font-family: ${tokens.typography.fontFamily.serif};
-  font-size: ${tokens.typography.fontSize['3xl']};
-  line-height: 1.1;
-  font-weight: ${tokens.typography.fontWeight.semibold};
-  color: ${tokens.colors.neutrals.white};
-  margin-bottom: 5%;
-  max-width: 90%;
+  font-size: 22vw;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.03);
+  line-height: 1;
+  z-index: 1;
 `;
 
-const ChallengeDescription = styled.p`
-  font-size: ${tokens.typography.fontSize.xl};
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 90%;
+const MainTitle = styled.h2`
+  font-family: ${tokens.typography.fontFamily.serif};
+  font-size: 5vw;
+  line-height: 1;
+  font-weight: 800;
+  color: ${tokens.colors.neutrals.black};
+  position: relative;
+  z-index: 2;
 `;
 
-const ChallengeRight = styled.div`
+const ConnectionText = styled.p`
+  font-family: ${tokens.typography.fontFamily.serif};
+  font-size: 1.2vw;
+  font-weight: 400;
+  font-style: italic;
+  color: ${tokens.colors.neutrals.gray};
+  margin-top: 2vw;
+  max-width: 100%;
+  position: relative;
+  z-index: 2;
+`;
+
+const ConnectionHighlight = styled.span`
+  color: ${tokens.colors.accent.primary};
+  font-weight: 600;
+  font-style: normal;
+`;
+
+const RightPanel = styled.div`
+  padding: 6% 8% 6% 0;
   background-color: ${tokens.colors.backgrounds.offWhite};
-  padding: 8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: ${tokens.colors.neutrals.black};
 `;
 
-const StakeholdersContainer = styled.div`
+const NumberedStack = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5%;
+  gap: 1.5vw;
 `;
 
-const StakeholderItem = styled.div`
+const NumberedItem = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-bottom: 5%;
+  padding: 1.5vw 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
-const StakeholderIcon = styled.div`
-  width: 3vw;
-  height: 3vw;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const ItemNumber = styled.div`
+  font-family: ${tokens.typography.fontFamily.serif};
+  font-size: 4.5vw;
+  font-weight: 800;
+  line-height: 0.8;
+  color: rgba(255, 51, 102, 0.2);
   margin-right: 1.5vw;
   flex-shrink: 0;
+  width: 3.5vw;
+  text-align: center;
 `;
 
-const StakeholderIconInner = styled.div`
-  width: 1.5vw;
-  height: 1.5vw;
-  background-color: ${tokens.colors.accent.primary};
-  border-radius: 50%;
-  opacity: 0.8;
-`;
-
-const StakeholderContent = styled.div`
+const ItemContent = styled.div`
   flex-grow: 1;
+  padding-top: 0.5vw;
 `;
 
-const StakeholderTitle = styled.h3`
+const ItemTitle = styled.h3`
   font-family: ${tokens.typography.fontFamily.serif};
-  font-size: ${tokens.typography.fontSize.xl};
-  font-weight: ${tokens.typography.fontWeight.semibold};
+  font-size: 1.6vw;
+  font-weight: 600;
   color: ${tokens.colors.neutrals.black};
   margin-bottom: 0.5vw;
 `;
 
-const StakeholderDesc = styled.p`
-  font-size: ${tokens.typography.fontSize.lg};
+const ItemDescription = styled.p`
+  font-size: 0.9vw;
   color: ${tokens.colors.neutrals.gray};
   line-height: 1.5;
 `;
 
 /**
- * CaseStudy1Challenge: Creating Space for Creative Excellence
+ * CaseStudy1Challenge: My Customers
  * 
- * Layout: Split layout with a dark left side and light right side
- * Content: Challenge description on the left, stakeholders on the right
+ * Layout: 40/60 split with light backgrounds
+ * Content: Bold "MY CUSTOMERS" title on left, numbered stack of customer types on right
  */
 const CaseStudy1Challenge = () => {
-  // Stakeholder data
-  const stakeholders = [
+  // Customer data
+  const customers = [
     {
+      number: '1',
       title: 'Design Teams',
-      description: 'Needed technical support to visualize their concepts quickly and accurately.'
+      description: 'Technical support to visualize concepts quickly and accurately'
     },
     {
+      number: '2',
       title: 'Marketing Leaders',
-      description: 'Required consistent, high-quality visuals that communicated product value.'
+      description: 'High-quality visuals that communicate product value'
     },
     {
+      number: '3',
       title: 'Executive Stakeholders',
-      description: 'Demanded flawless visuals under extreme deadline pressure.'
+      description: 'Flawless visuals under extreme deadline pressure'
     }
   ];
 
   return (
     <SlideContainer>
-      <ChallengeLeft>
-        <EditorialSubtitle $color={tokens.colors.accent.primary}>Microsoft Surface Product Launches</EditorialSubtitle>
-        <ChallengeTitle>Creating Space for Creative Excellence</ChallengeTitle>
-        <ChallengeDescription>
-          Supporting internal teams to create compelling product stories without technical friction.
-        </ChallengeDescription>
-      </ChallengeLeft>
+      <LeftPanel>
+        <BackgroundText>MY</BackgroundText>
+        <MainTitle>MY CUSTOMERS</MainTitle>
+        <ConnectionText>
+          Building bridges at the <ConnectionHighlight>intersection</ConnectionHighlight> of creative needs
+        </ConnectionText>
+      </LeftPanel>
       
-      <ChallengeRight>
-        <StakeholdersContainer>
-          {stakeholders.map((stakeholder, index) => (
-            <StakeholderItem key={index}>
-              <StakeholderIcon>
-                <StakeholderIconInner />
-              </StakeholderIcon>
-              <StakeholderContent>
-                <StakeholderTitle>{stakeholder.title}</StakeholderTitle>
-                <StakeholderDesc>{stakeholder.description}</StakeholderDesc>
-              </StakeholderContent>
-            </StakeholderItem>
+      <RightPanel>
+        <NumberedStack>
+          {customers.map((customer, index) => (
+            <NumberedItem key={index}>
+              <ItemNumber>{customer.number}</ItemNumber>
+              <ItemContent>
+                <ItemTitle>{customer.title}</ItemTitle>
+                <ItemDescription>{customer.description}</ItemDescription>
+              </ItemContent>
+            </NumberedItem>
           ))}
-        </StakeholdersContainer>
-      </ChallengeRight>
+        </NumberedStack>
+      </RightPanel>
     </SlideContainer>
   );
 };
