@@ -1,0 +1,414 @@
+[
+  {
+    "slide_number": 1,
+    "slide_name": "Title",
+    "content": {
+      "subtitle": "PORTFOLIO REVIEW",
+      "title": "BRIAN TOWNSEND",
+      "author_role": "AI Creative Leader | Product Storyteller | CG Artist | Principal Design Manager"
+    }
+  },
+  {
+    "slide_number": 2,
+    "slide_name": "Agenda",
+    "content": {
+      "title": "AGENDA",
+      "items": [
+        "About Me",
+        "Microsoft Surface Launches",
+        "Building A Product Film Studio",
+        "AI-Driven Visual Design"
+      ]
+    }
+  },
+  {
+    "slide_number": 3,
+    "slide_name": "About1",
+    "content": {
+      "title": "25 YEARS of ART + TECH",
+      "stats": [
+        {
+          "value": "25",
+          "suffix": "Years",
+          "description": "3D Art & Animation"
+        },
+        {
+          "value": "17",
+          "suffix": "Years",
+          "description": "Product Visualization"
+        },
+        {
+          "value": "12",
+          "suffix": "Years",
+          "description": "Leadership"
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 4,
+    "slide_name": "CaseStudy1",
+    "content": {
+      "label": "Case Study 1",
+      "title": "Microsoft Surface Product Launches",
+      "details": [
+        {
+          "label": "Timeline",
+          "value": "2012-2014"
+        },
+        {
+          "label": "Role",
+          "value": "Lead CG Artist"
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 5,
+    "slide_name": "CaseStudy1Challenge",
+    "content": {
+      "background_text": "MY",
+      "title": "MY CUSTOMERS",
+      "connection_text": "Building bridges at the intersection of creative needs",
+      "customers": [
+        {
+          "number": "1",
+          "title": "Design Teams",
+          "description": "Technical support to visualize concepts quickly and accurately"
+        },
+        {
+          "number": "2",
+          "title": "Marketing Leaders",
+          "description": "High-quality visuals that communicate product value"
+        },
+        {
+          "number": "3",
+          "title": "Executive Stakeholders",
+          "description": "Flawless visuals under extreme deadline pressure"
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 6,
+    "slide_name": "CaseStudy1Complexities",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Under the Hood: The Invisible Complexities",
+      "description": "Managing multiple technical challenges while maintaining production schedules.",
+      "center_text": "Surface Visual Production",
+      "items": [
+        "CAD Data Management",
+        "8 Global Markets",
+        "Render Time Constraints",
+        "Photorealistic Quality"
+      ]
+    }
+  },
+  {
+    "slide_number": 7,
+    "slide_name": "CaseStudy1Collaboration",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Collaboration at the Source",
+      "description": "Working directly with design and engineering teams to create authentic digital representations.",
+      "points": [
+        "Direct partnership with product engineers for CAD accuracy",
+        "1:1 digital representation of physical products",
+        "Maintaining both visual and mechanical accuracy"
+      ],
+      "comparisons": [
+        { "label": "CAD" },
+        { "label": "RENDER" }
+      ]
+    }
+  },
+  {
+    "slide_number": 8,
+    "slide_name": "CaseStudy1Process",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Building the Digital Product",
+      "description": "Creating authentic 3D assets through meticulous attention to materials, lighting, and movement.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Wireframe",
+          "description": "Precise geometry built from engineering CAD data"
+        },
+        {
+          "number": "02",
+          "title": "Rigging",
+          "description": "Creating movement systems for dynamic product features"
+        },
+        {
+          "number": "03",
+          "title": "Materials",
+          "description": "Developing physically accurate surface properties"
+        },
+        {
+          "number": "04",
+          "title": "Lighting",
+          "description": "Studio-quality lighting for photorealistic renders"
+        }
+      ]
+    }
+  },
+  {
+    "slide_number": 9,
+    "slide_name": "CaseStudy1Scaling",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Scaling Under Constraints",
+      "description": "Expanding CPU-based rendering capabilities while optimizing for maximum throughput.",
+      "timeline": [
+        { "date": "Q3 2012", "label": "Initial Setup", "text": "5 workstations repurposed for overnight rendering" },
+        { "date": "Q1 2013", "label": "First Expansion", "text": "12 dedicated CPU render nodes across multiple circuits" },
+        { "date": "Q4 2013", "label": "Process Optimization", "text": "Render settings and workflow improvements to maximize throughput" },
+        { "date": "Q2 2014", "label": "Data Center Integration", "text": "20+ nodes moved to dedicated data center facility" }
+      ]
+    }
+  },
+  {
+    "slide_number": 10,
+    "slide_name": "CaseStudy1Automation",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Automating Complexity Away",
+      "description": "Using Python-based automation to eliminate technical overhead and free up creative focus.",
+      "code_snippet": "render_automation.py (conceptual)",
+      "benefits": [
+        { "title": "Technical Overhead Reduced", "description": "Automated file management, render distribution, and error handling" },
+        { "title": "Creative Focus Enabled", "description": "Designers freed from technical tasks to focus on visual storytelling" },
+        { "title": "24/7 Productivity", "description": "Overnight and weekend rendering without manual supervision" }
+      ]
+    }
+  },
+  {
+    "slide_number": 11,
+    "slide_name": "CaseStudy1Evolution",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Visual Quality Evolution: 2012-2014",
+      "description": "Progressive improvement in visual fidelity and storytelling across Surface product generations.",
+      "comparison": [
+        { "year": "Surface (2012)", "caption": "Initial product visualization with fundamental lighting and materials" },
+        { "year": "Surface Pro (2013)", "caption": "Improved material definition and environmental interaction" },
+        { "year": "Surface Pro 3 (2014)", "caption": "Advanced lighting, materials, and cinematic composition" }
+      ]
+    }
+  },
+  {
+    "slide_number": 12,
+    "slide_name": "CaseStudy1Impact",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Launching a Global Brand",
+      "description": "Creating consistent visual identity across eight global markets while maintaining accelerated delivery timelines.",
+      "gallery_items": [
+        "Global launch event featuring consistent Surface visual language",
+        "European Market",
+        "Asian Market",
+        "North American Market",
+        "Retail Environment",
+        "Digital Campaign",
+        "Print Materials"
+      ]
+    }
+  },
+  {
+    "slide_number": 13,
+    "slide_name": "CaseStudy1Summary",
+    "content": {
+      "subtitle": "Microsoft Surface Product Launches",
+      "title": "Clearer Process, Better Stories, Stronger Products",
+      "quote": "By making technical complexity invisible, we enabled teams to focus entirely on consumer experience.",
+      "stats": [
+        { "value": "300+", "label": "Product Images" },
+        { "value": "8", "label": "Global Markets" },
+        { "value": "70%", "label": "Cost Reduction" },
+        { "value": "12", "label": "Team Members" }
+      ]
+    }
+  },
+  {
+    "slide_number": 14,
+    "slide_name": "CaseStudy2",
+    "content": {
+      "label": "Case Study 2",
+      "title": "Building a CG + Live Action Design Team",
+      "details": [
+        { "label": "Timeline", "value": "2015-2022" },
+        { "label": "Role", "value": "Design Team Lead" }
+      ]
+    }
+  },
+  {
+    "slide_number": 15,
+    "slide_name": "CaseStudy2Spark",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "It Started with a Few Launch Animations...",
+      "description": "How modest CG animations for internal use sparked executive interest and set the stage for a new design discipline.",
+      "points": [
+        "One-off CG animations created for product launch presentations",
+        "Initially used internally for vision and pitch meetings",
+        "Immediate executive attention created unexpected opportunity"
+      ],
+      "quote": "These animations communicate our product vision better than anything we've seen before. We need more of this.",
+      "attribution": "— VP of Design, 2015"
+    }
+  },
+  {
+    "slide_number": 16,
+    "slide_name": "CaseStudy2Demand",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Demand Skyrockets—Now What?",
+      "description": "Dramatic increase in requests created both opportunity and challenge as animation became a crucial storytelling tool.",
+      "email_subject": "Need CG animation for executive presentation URGENT",
+      "email_body_snippet": "We need a high-quality animation showing the new product features for the board presentation next week...",
+      "request_stack": [
+        "Product animation needed for launch keynote",
+        "Feature visualization for marketing",
+        "Product concept animation for executive review"
+      ],
+      "chart_title": "Animation Request Growth",
+      "chart_years": ["2015", "2017", "2019", "2021", "2022"]
+    }
+  },
+  {
+    "slide_number": 17,
+    "slide_name": "CaseStudy2Team",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Scaling with Intention: 2015–2022",
+      "description": "Strategic team development based on evolving needs and expanding capabilities.",
+      "points": [
+        "Built team gradually: CG artists → directors → producers → hybrid talent",
+        "Inspired by VFX pipelines but adapted for design and marketing needs",
+        "Grew into a versatile team across disciplines: motion, CG, VFX, UI"
+      ],
+      "timeline": [
+        { "year": "2015", "title": "First CG Artists", "description": "Initial team of 3 generalists handling all aspects of CG production" },
+        { "year": "2017", "title": "Director & Producer", "description": "Added creative direction and production management as projects grew in scale" },
+        { "year": "2019", "title": "Specialized Disciplines", "description": "Team grew to include modeling, lighting, animation, and compositing specialists" },
+        { "year": "2021-22", "title": "Hybrid Talent Integration", "description": "Added live action expertise and cross-disciplinary talent for complex productions" }
+      ],
+      "org_preview": [
+        { "title": "CG Artists", "count": "12" },
+        { "title": "Directors", "count": "3" },
+        { "title": "Producers", "count": "4" },
+        { "title": "Hybrid", "count": "5" }
+      ]
+    }
+  },
+  {
+    "slide_number": 18,
+    "slide_name": "CaseStudy2Infrastructure",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Scaling to Keep Up with Ambition",
+      "description": "Three-phase infrastructure evolution to support increasingly ambitious creative vision.",
+      "phases": [
+        { "number": "Phase 1", "title": "CPU Render Farm", "stats": [{ "label": "Servers:", "value": "8 → 22" }, { "label": "Period:", "value": "2015-2018" }], "description": "Initial infrastructure built on traditional CPU rendering...", "highlight": "Established foundation" },
+        { "number": "Phase 2", "title": "GPU Acceleration", "stats": [{ "label": "Performance:", "value": "5x increase" }, { "label": "Period:", "value": "2018-2020" }], "description": "Transition to GPU-accelerated rendering...", "highlight": "Faster iterations" },
+        { "number": "Phase 3", "title": "Cloud Pipeline", "stats": [{ "label": "Capacity:", "value": "Unlimited" }, { "label": "Period:", "value": "2020-2022" }], "description": "Cloud-based infrastructure with dynamic scaling...", "highlight": "Unlimited scale" }
+      ]
+    }
+  },
+  {
+    "slide_number": 19,
+    "slide_name": "CaseStudy2Speed",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Frame Rates, Render Times, and What Gets Cut",
+      "description": "How technical decisions directly impacted creative exploration and idea selection.",
+      "points": [
+        "Started with V-Ray—high quality but limited iteration cycles",
+        "Moved to Redshift—significantly faster, enabling more creative options",
+        "Increased render speed led to greater creative experimentation"
+      ],
+      "stat": "80-90%",
+      "stat_label": "of ideas get cut: iteration speed is everything",
+      "comparison_heading": "Render Engine Comparison",
+      "engines": ["V-Ray", "Redshift"],
+      "vray_stats": [{"title": "Render Time (1080p frame)"}, {"title": "Iterations Per Day"}, {"title": "Ideas Explored"}],
+      "redshift_stats": [{"title": "Render Time (1080p frame)"}, {"title": "Iterations Per Day"}, {"title": "Ideas Explored"}],
+      "vray_frame_label": "V-Ray: 45 minutes per frame",
+      "redshift_frame_label": "Redshift: 5 minutes per frame"
+    }
+  },
+  {
+    "slide_number": 20,
+    "slide_name": "CaseStudy2Hybrid",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Blending Worlds—CG Meets Live Action",
+      "description": "Exploring the creative possibilities at the intersection of live action footage and computer-generated imagery.",
+      "process": [
+        { "title": "Live Action Plate", "description": "On-set filming with careful planning for CG integration" },
+        { "title": "3D Elements", "description": "Creating computer-generated objects, effects, and environments" },
+        { "title": "Compositing", "description": "Integrating CG elements with live footage" },
+        { "title": "Final Output", "description": "Seamless blend of real and digital elements" }
+      ]
+    }
+  },
+  {
+    "slide_number": 21,
+    "slide_name": "CaseStudy2Launch",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "The Visual Backbone of Every Major Launch Film",
+      "description": "A decade of crafting narrative-driven product films that shaped visual storytelling language.",
+      "launches": [
+        {"product": "Product Launch 1", "year": "2015", "style": "CG"},
+        {"product": "Product Launch 2", "year": "2016", "style": "CG"},
+        {"product": "Product Launch 3", "year": "2017", "style": "CG"},
+        {"product": "Product Launch 4", "year": "2018", "style": "HYBRID"},
+        {"product": "Product Launch 5", "year": "2019", "style": "HYBRID"},
+        {"product": "Product Launch 6", "year": "2020", "style": "HYBRID"},
+        {"product": "Product Launch 7", "year": "2021", "style": "HYBRID"},
+        {"product": "Product Launch 8", "year": "2022", "style": "HYBRID"}
+      ]
+    }
+  },
+  {
+    "slide_number": 22,
+    "slide_name": "CaseStudy2Process",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Process = Power",
+      "description": "When creative teams have clear structure and reliable workflows, they're free to take bigger risks and push creative boundaries.",
+      "equation": ["Clear Process", "+", "Skilled Team", "=", "Creative Power"]
+    }
+  },
+  {
+    "slide_number": 23,
+    "slide_name": "CaseStudy2Reflections",
+    "content": {
+      "subtitle": "Building a CG + Live Action Design Team",
+      "title": "Reflections & Takeaway",
+      "description": "Lessons learned from building a specialized creative team from the ground up.",
+      "points": [
+        "Building a specialized design team requires balancing technical expertise with creative vision",
+        "Infrastructure and process investments have outsized returns on creative output",
+        "Hybrid workflows push both CG and live action disciplines further than either could go alone",
+        "Team evolution must be guided by business needs, not just creative ambition"
+      ],
+      "quote": "The most innovative creative work happens at the intersection of process discipline and creative freedom."
+    }
+  },
+  {
+    "slide_number": 24,
+    "slide_name": "CaseStudy3",
+    "content": {
+      "label": "Case Study 3",
+      "title": "Transforming Visual Design Storytelling With AI",
+      "details": [
+        { "label": "Timeline", "value": "2022-2025" },
+        { "label": "Role", "value": "Principal Design Manager" }
+      ]
+    }
+  }
+] 
